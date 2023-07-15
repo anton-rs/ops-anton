@@ -3,7 +3,7 @@
 /usr/local/bin/reth node \
   --datadir /db \
   --chain mainnet \
-  --metrics 0.0.0.0:9090 \
+  --metrics 0.0.0.0:9420 \
   --http \
   --http.port 8545 \
   --http.addr 0.0.0.0 \

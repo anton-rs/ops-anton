@@ -12,11 +12,11 @@ services:
   reth:
     build:
       context: .
-      dockerfile: reth.dockerfile
+      dockerfile: reth/reth.dockerfile
     ports:
       - "8545:8545"
       - "8551:8551"
-      - "6060:6060"
+      - "9420:9420"
     volumes:
       - "el_data:/db"
     networks:
@@ -24,9 +24,10 @@ services:
   lighthouse:
     build:
       context: .
-      dockerfile: lighthouse.dockerfile
+      dockerfile: lighthouse/lighthouse.dockerfile
     ports:
       - "5052:5052"
+      - "5054:5054"
     volumes:
       - "cl_data:/db"
     networks:

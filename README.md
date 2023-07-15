@@ -31,12 +31,14 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 | `reth_data`       | Reth data directory       |
 
 ## Ports
-| Service       | Port   |
-| ------------- | ------ |
-| Grafana       | `6150` |
-| Prometheus    | `9090` |
-| Portainer     | `9000` |
-| Node Exporter | `9100` |
-| Lighthouse    | `5052` |
-| Reth          | `8545` |
-| Reth (Engine) | `8551` |
+| Service              | Port   |
+| -------------------- | ------ |
+| Grafana              | `6150` |
+| Prometheus           | `9090` |
+| Portainer            | `9000` |
+| Node Exporter        | `9100` |
+| Lighthouse           | `5052` |
+| Lighthouse (Metrics) | `5054` |
+| Reth                 | `8545` |
+| Reth (Engine)        | `8551` |
+| Reth (Metrics)       | `9420` |

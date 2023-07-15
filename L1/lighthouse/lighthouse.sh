@@ -8,4 +8,7 @@
   --checkpoint-sync-url https://mainnet.checkpoint.sigp.io \
   --http \
   --http-port 5052 \
-  --disable-deposit-contract-sync
+  --disable-deposit-contract-sync \
+  --metrics \
+  --metrics-address 0.0.0.0 \
+  --metrics-port 5054

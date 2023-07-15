@@ -15,3 +15,11 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['host.docker.internal:10088']
+  - job_name: reth
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['reth:9420']
+  - job_name: lighthouse
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['lighthouse:5054']
