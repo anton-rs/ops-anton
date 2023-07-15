@@ -1,6 +1,13 @@
+# Define volumes for the containers to persist data to
 volumes:
   el_data:
   cl_data:
+
+# Use the shared network across all stacks
+networks:
+  anton-net:
+    external: true
+
 services:
   reth:
     build:
@@ -12,6 +19,8 @@ services:
       - "6060:6060"
     volumes:
       - "el_data:/db"
+    networks:
+      - anton-net
   lighthouse:
     build:
       context: .
@@ -20,5 +29,7 @@ services:
       - "5052:5052"
     volumes:
       - "cl_data:/db"
+    networks:
+      - anton-net
     depends_on:
       - reth

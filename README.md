@@ -4,6 +4,14 @@ This repository contains all of the Dockerfiles and devops scripts for Anton.
 
 ## Usage
 
+Begin by installing dependencies:
+* [Docker](https://docs.docker.com/get-docker/)
+
+Then, create a shared network named `anton-net` for the containers to communicate over:
+```bash
+docker network create anton-net
+```
+
 To spin up the whole system, run `make sys_up`. This will build the images for the system utilities (Grafana, Prometheus, Portainer) as well as the L1
 clients and start them in a container stack.
 
