@@ -64,7 +64,13 @@ services:
       - "6150:3000"
     volumes:
       - "grafana_data:/var/lib/grafana"
+      - "./grafana/provisioning:/etc/grafana/provisioning"
+      - "./grafana/dashboards:/etc/grafana/provisioning_temp/dashboards"
     networks:
       - anton-net
     depends_on:
       - prometheus
+    entrypoint: >
+      sh -c "cp -r /etc/grafana/provisioning_temp/dashboards/. /etc/grafana/provisioning/dashboards &&
+             find /etc/grafana/provisioning/dashboards/ -name '*.json' -exec sed -i 's/$${DS_PROMETHEUS}/Prometheus/g' {} \+ &&
+             /run.sh"
