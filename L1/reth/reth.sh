@@ -8,7 +8,7 @@
   --http.port 8545 \
   --http.addr 0.0.0.0 \
   --http.api debug,eth,trace,txpool,rpc,web3,admin \
-  --authrpc.jwtsecret .secret \
+  --authrpc.jwtsecret jwt.hex \
   --authrpc.addr 0.0.0.0 \
   --authrpc.port 8551 \
   -vvv

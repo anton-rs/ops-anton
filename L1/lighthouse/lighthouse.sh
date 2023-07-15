@@ -4,7 +4,7 @@
   --datadir /db \
   --network mainnet \
   --execution-endpoint "http://reth:8551" \
-  --execution-jwt .secret \
+  --execution-jwt jwt.hex \
   --checkpoint-sync-url https://mainnet.checkpoint.sigp.io \
   --http \
   --http-port 5052 \
