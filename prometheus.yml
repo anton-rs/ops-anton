@@ -23,3 +23,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ['lighthouse:5054']
+  - job_name: eth_metrics_exporter
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['eth-metrics-exporter:9200']

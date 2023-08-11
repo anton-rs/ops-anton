@@ -27,8 +27,8 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 | `portainer_data`  | Portainer data directory  |
 | `prometheus_data` | Prometheus data directory |
 | `grafana_data`    | Grafana data directory    |
-| `lighthouse_data` | Lighthouse data directory |
-| `reth_data`       | Reth data directory       |
+| `cl_data`         | Lighthouse data directory |
+| `el_data`         | Reth data directory       |
 
 ## Ports
 | Service              | Port   |
@@ -42,3 +42,4 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 | Reth                 | `8545` |
 | Reth (Engine)        | `8551` |
 | Reth (Metrics)       | `9420` |
+| ETH Metrics Exporter | `9200` |
