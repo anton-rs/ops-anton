@@ -18,7 +18,9 @@ sys_up:
 	# Start L1 infrastructure
 	(cd ./L1 && make l1_up)
 	# Start system infrastructure
-	docker-compose up -d
+	export UID=$(id -u)
+	export GID=$(id -g)
+	UID=$UID GID=$GID docker-compose up -d
 
 sys_down:
 	# Gracefully shut down L1 infrastructure

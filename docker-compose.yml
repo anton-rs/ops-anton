@@ -59,6 +59,7 @@ services:
       - anton-net
   grafana:
     image: grafana/grafana:latest
+    user: 0:0
     container_name: grafana
     ports:
       - "6150:3000"
