@@ -1,13 +1,22 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest 
 
-RUN apt-get update && apt-get install -y curl
+ARG DEBIAN_FRONTEND=noninteractive
+ARG RUNNER_VERSION="2.308.0"
 
-RUN mkdir -p actions-runner && cd actions-runner
+RUN apt update -y && apt upgrade -y && useradd -m docker
+RUN apt install -y --no-install-recommends \
+curl jq build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip clang
 
-RUN curl -o actions-runner-linux-x64-2.307.1.tar.gz -L https://github.com/actions/runner/releases/download/v2.307.1/actions-runner-linux-x64-2.307.1.tar.gz
+RUN cd /home/docker && mkdir actions-runner && cd actions-runner \
+&& curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
+&& tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
 
-RUN tar xzf ./actions-runner-linux-x64-2.307.1.tar.gz
+RUN chown -R docker ~docker && /home/docker/actions-runner/bin/installdependencies.sh
 
-RUN ./config.sh --url https://github.com/anton-rs --token AFCNLSXMBG6PJAZZ3EWENHDE3LOGQ
+COPY start.sh start.sh
 
-RUN ./run.sh
+RUN chmod +x start.sh
+
+USER docker
+
+ENTRYPOINT ["./start.sh"]
