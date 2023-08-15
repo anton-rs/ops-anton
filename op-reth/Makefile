@@ -1,4 +1,7 @@
-all: create-runner
+all: build-image create-container
 
-creater-runner:
-	docker create $(docker build -q . -f ./runner.dockerfile)
+build-image:
+	docker build . -f ./runner.dockerfile -t actions-runner
+
+create-container:
+	docker container create --name "runner-$$(openssl rand -hex 4)" actions-runner
