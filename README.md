@@ -43,3 +43,7 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 | Reth (Engine)        | `8551` |
 | Reth (Metrics)       | `9420` |
 | ETH Metrics Exporter | `9200` |
+| op-reth (Base)       | `9545` |
+| op-reth (Engine)     | `9551` |
+| op-reth (Metrics)    | `9430` |
+| magi (Base)          | `6052` |

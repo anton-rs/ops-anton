@@ -1,0 +1,38 @@
+# Define volumes for the containers to persist data to
+volumes:
+  op_base_el_data:
+  op_base_cl_data:
+
+# Use the shared network across all stacks
+networks:
+  anton-net:
+    external: true
+
+services:
+  op-reth:
+    build:
+      context: .
+      dockerfile: reth/reth.dockerfile
+    ports:
+      - '9430:9430' # metrics
+      - '30403:30403' # eth/66 peering
+      - '9545:9545' # rpc
+      - '9551:9551' # engine
+    volumes:
+      - "op_base_el_data:/db"
+    networks:
+      - anton-net
+  magi:
+    build:
+      context: .
+      dockerfile: magi/magi.dockerfile
+    ports:
+      - '6052:6052/tcp' # rpc
+      - '6053:6053/tcp'
+      - '6054:6054/tcp' # metrics
+    volumes:
+      - "op_base_cl_data:/db"
+    networks:
+      - anton-net
+    depends_on:
+      - op-reth
