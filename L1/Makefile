@@ -3,4 +3,4 @@ l1_up:
 
 l1_down:
 	docker-compose down
-	docker image ls 'l1-*' --format='{{.Repository}}' | xargs -r docker rmi
+	docker image ls 'l1*' --format='{{.Repository}}' | xargs -r docker rmi
