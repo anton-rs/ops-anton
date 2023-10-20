@@ -17,6 +17,8 @@ setup:
 sys_up:
 	# Start L1 infrastructure
 	(cd ./L1 && make l1_up)
+	# Start L2 infrastructure
+	(cd ./L2 && make l2_up)
 	# Start system infrastructure
 	export UID=$(id -u)
 	export GID=$(id -g)
@@ -25,6 +27,8 @@ sys_up:
 sys_down:
 	# Gracefully shut down L1 infrastructure
 	(cd ./L1 && make l1_down)
+	# Gracefully shut down L2 infrastructure
+	(cd ./L2 && make l2_down)
 	# Shut down system infrastructure
 	docker-compose down
 	docker image ls 'anton-*' --format='{{.Repository}}' | xargs -r docker rmi

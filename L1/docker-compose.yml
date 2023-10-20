@@ -43,11 +43,11 @@ services:
       - reth
       - lighthouse
     ports:
-      - 9200:9200 # metrics
+      - 9300:9300 # metrics
     volumes:
       - ./eth-metrics-exporter.yaml:/root/config.yaml
     command:
       - --config=/root/config.yaml
-      - --metrics-port=9200
+      - --metrics-port=9300
     networks:
       - anton-net

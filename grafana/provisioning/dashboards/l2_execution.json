@@ -5899,8 +5899,8 @@
       {
         "current": {
           "selected": true,
-          "text": "reth:9420",
-          "value": "reth:9420"
+          "text": "op-reth:9430",
+          "value": "op-reth:9430"
         },
         "datasource": {
           "type": "prometheus",
@@ -5930,8 +5930,8 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "[L1] Execution Layer",
-  "uid": "2k8BXz24x",
+  "title": "[L2] Execution Layer",
+  "uid": "2k8BXz24y",
   "version": 10,
   "weekStart": ""
 }
