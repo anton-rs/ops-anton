@@ -1,4 +1,4 @@
-FROM ghcr.io/paradigmxyz/reth:v0.1.0-alpha.8
+FROM ghcr.io/paradigmxyz/reth:v0.1.0-alpha.9
 
 COPY ./reth/reth.sh .
 RUN chmod +x reth.sh
