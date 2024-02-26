@@ -22,28 +22,31 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 > **Note**
 > DO NOT purge these volumes unless you want to lose data.
 
-| Volume Name       | Description               |
-| ----------------- | ------------------------- |
-| `portainer_data`  | Portainer data directory  |
-| `prometheus_data` | Prometheus data directory |
-| `grafana_data`    | Grafana data directory    |
-| `cl_data`         | Lighthouse data directory |
-| `el_data`         | Reth data directory       |
+| Volume Name       | Description                               |
+|-------------------|-------------------------------------------|
+| `portainer_data`  | Portainer data directory                  |
+| `prometheus_data` | Prometheus data directory                 |
+| `grafana_data`    | Grafana data directory                    |
+| `cl_data`         | Lighthouse data directory for L1 Ethereum |
+| `el_data`         | Reth data directory for L1 Ethereum       |
+| `sepolia_cl_data` | Lighthouse data directory for L1 Sepolia  |
+| `sepolia_el_data` | Reth data directory for L1 Sepolia        |
 
 ## Ports
-| Service              | Port   |
-| -------------------- | ------ |
-| Grafana              | `6150` |
-| Prometheus           | `9090` |
-| Portainer            | `9000` |
-| Node Exporter        | `9100` |
-| Lighthouse           | `5052` |
-| Lighthouse (Metrics) | `5054` |
-| Reth                 | `8545` |
-| Reth (Engine)        | `8551` |
-| Reth (Metrics)       | `9420` |
-| ETH Metrics Exporter | `9200` |
-| op-reth (Base)       | `9545` |
-| op-reth (Engine)     | `9551` |
-| op-reth (Metrics)    | `9430` |
-| magi (Base)          | `6052` |
+| Service                        | Port   |
+|--------------------------------|--------|
+| Grafana                        | `6150` |
+| Prometheus                     | `9090` |
+| Portainer                      | `9000` |
+| Node Exporter                  | `9100` |
+| Lighthouse                     | `5052` |
+| Lighthouse (Metrics)           | `5054` |
+| Reth                           | `8545` |
+| Reth (Engine)                  | `8551` |
+| Reth (Metrics)                 | `9420` |
+| ETH Metrics Exporter           | `9300` |
+| Lighthouse (Sepolia)           | `5055` |
+| Lighthouse (Sepolia - Metrics) | `5057` |
+| Reth (Sepolia)                 | `8546` |
+| Reth (Sepolia - Engine)        | `8552` |
+| Reth (Sepolia - Metrics)       | `9301` |
