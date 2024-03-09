@@ -1,10 +1,10 @@
 consensus:
   enabled: true
-  url: "http://lighthouse:5055/"
+  url: "http://sepolia-lighthouse:5055/"
   name: "sepolia-consensus-client"
 execution:
   enabled: true
-  url: "http://reth:8546/"
+  url: "http://sepolia-reth:8546/"
   name: "sepolia-execution-client"
   modules:
     - "eth"
