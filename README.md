@@ -5,9 +5,11 @@ This repository contains all of the Dockerfiles and devops scripts for Anton.
 ## Usage
 
 Begin by installing dependencies:
-* [Docker](https://docs.docker.com/get-docker/)
+
+- [Docker](https://docs.docker.com/get-docker/)
 
 Then, create a shared network named `anton-net` for the containers to communicate over:
+
 ```bash
 docker network create anton-net
 ```
@@ -23,7 +25,7 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 > DO NOT purge these volumes unless you want to lose data.
 
 | Volume Name       | Description                               |
-|-------------------|-------------------------------------------|
+| ----------------- | ----------------------------------------- |
 | `portainer_data`  | Portainer data directory                  |
 | `prometheus_data` | Prometheus data directory                 |
 | `grafana_data`    | Grafana data directory                    |
@@ -33,8 +35,9 @@ To spin down the system, run `make sys_down`. This will stop the containers and 
 | `sepolia_el_data` | Reth data directory for L1 Sepolia        |
 
 ## Ports
+
 | Service                        | Port   |
-|--------------------------------|--------|
+| ------------------------------ | ------ |
 | Grafana                        | `6150` |
 | Prometheus                     | `9090` |
 | Portainer                      | `9000` |
