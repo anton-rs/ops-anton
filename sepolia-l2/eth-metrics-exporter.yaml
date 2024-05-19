@@ -1,0 +1,13 @@
+consensus:
+  enabled: true
+  url: "http://sepolia-op-node:9545/"
+  name: "sepolia-consensus-client"
+execution:
+  enabled: true
+  url: "http://sepolia-op-reth:8547/"
+  name: "sepolia-execution-client"
+  modules:
+    - "eth"
+    - "net"
+    - "web3"
+    - "txpool"

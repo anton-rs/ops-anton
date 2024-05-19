@@ -1,7 +1,17 @@
 # Define volumes for the containers to persist data to
 volumes:
   sepolia_op_reth_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /drives/L2/volumes/sepolia-op-reth/
+      o: bind
   sepolia_op_node_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /drives/L2/volumes/sepolia-op-node/
+      o: bind
 # Use the shared network across all stacks
 networks:
   anton-net:
@@ -10,42 +20,63 @@ services:
   sepolia-op-reth:
     build:
       context: .
-      dockerfile: reth/reth.dockerfile
+      dockerfile: op-reth/op-reth.dockerfile
     ports:
-      - "9421:9421" # metrics
-      - "30304:30304" # eth/66 peering
-      - "8546:8546" # rpc
-      - "8552:8552" # engine
+      - "9422:9422" # metrics
+      - "8547:8547" # rpc
+      - "8553:8553" # auth rpc
+      - "30305:30305" # peering port
     volumes:
       - "sepolia_op_reth_data:/db"
     networks:
       - anton-net
-  sepolia-lighthouse:
-    build:
-      context: .
-      dockerfile: lighthouse/lighthouse.dockerfile
+  sepolia-op-node:
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-node:v1.7.5
+    command: >
+      op-node
+
+        --l1="http://sepolia-reth:8546"
+        --l2="http://sepolia-op-reth:8553"
+        --rpc.addr="0.0.0.0"
+        --rpc.port=9545
+        --l2.jwt-secret=/db/jwttoken/jwt.hex
+        --l1.trustrpc
+        --l1.rpckind="basic"
+        --l1.beacon="http://sepolia-lighthouse:5055"
+        --metrics.enabled
+        --metrics.addr=0.0.0.0
+        --metrics.port=7300
+        --syncmode=execution-layer
+        --network op-sepolia
+        --rollup.load-protocol-versions=true
+        --rollup.halt=major
+    # entrypoint: op-node/op-node.sh
+    # build:
+    #   context: .
+    #   dockerfile: op-node/op-node.dockerfile
     ports:
-      - "5055:5055/tcp" # rpc
-      - "5056:5056/tcp"
-      - "5057:5057/tcp" # metrics
+      - "7300:7300" # metrics
+      - "9003:9003/udp" # peering
+      - "9003:9003/tcp" # peering
+      - "9545:9545" # rpc
     volumes:
-      - "sepolia_cl_data:/db"
+      - "sepolia_op_node_data:/db"
     networks:
       - anton-net
     depends_on:
-      - sepolia-reth
-  sepolia-eth-metrics-exporter:
+      - sepolia-op-reth
+  op-sepolia-eth-metrics-exporter:
     restart: unless-stopped
     image: ethpandaops/ethereum-metrics-exporter:debian-latest
     depends_on:
-      - sepolia-reth
-      - sepolia-lighthouse
+      - sepolia-op-reth
+      - sepolia-op-node
     ports:
-      - 9301:9301 # metrics
+      - 9302:9302 # metrics
     volumes:
       - ./eth-metrics-exporter.yaml:/root/config.yaml
     command:
       - --config=/root/config.yaml
-      - --metrics-port=9301
+      - --metrics-port=9302
     networks:
       - anton-net
