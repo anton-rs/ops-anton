@@ -2,22 +2,20 @@
 volumes:
   sepolia_op_reth_data:
   sepolia_op_node_data:
-
 # Use the shared network across all stacks
 networks:
   anton-net:
     external: true
-
 services:
   sepolia-op-reth:
     build:
       context: .
       dockerfile: reth/reth.dockerfile
     ports:
-      - '9421:9421' # metrics
-      - '30304:30304' # eth/66 peering
-      - '8546:8546' # rpc
-      - '8552:8552' # engine
+      - "9421:9421" # metrics
+      - "30304:30304" # eth/66 peering
+      - "8546:8546" # rpc
+      - "8552:8552" # engine
     volumes:
       - "sepolia_op_reth_data:/db"
     networks:
@@ -27,9 +25,9 @@ services:
       context: .
       dockerfile: lighthouse/lighthouse.dockerfile
     ports:
-      - '5055:5055/tcp' # rpc
-      - '5056:5056/tcp'
-      - '5057:5057/tcp' # metrics
+      - "5055:5055/tcp" # rpc
+      - "5056:5056/tcp"
+      - "5057:5057/tcp" # metrics
     volumes:
       - "sepolia_cl_data:/db"
     networks:
