@@ -50,10 +50,6 @@ services:
         --network op-sepolia
         --rollup.load-protocol-versions=true
         --rollup.halt=major
-    # entrypoint: op-node/op-node.sh
-    # build:
-    #   context: .
-    #   dockerfile: op-node/op-node.dockerfile
     ports:
       - "7300:7300" # metrics
       - "9003:9003/udp" # peering

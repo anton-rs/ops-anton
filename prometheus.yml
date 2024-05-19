@@ -37,3 +37,15 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["sepolia-eth-metrics-exporter:9301"]
+  - job_name: sepolia-op-reth
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["sepolia-op-reth:9422"]
+  - job_name: sepolia-op-node
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["sepolia-op-node:7300"]
+  - job_name: op-sepolia-eth_metrics_exporter
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["op-sepolia-eth-metrics-exporter:9302"]
