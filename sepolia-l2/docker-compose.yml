@@ -12,6 +12,12 @@ volumes:
       type: none
       device: /drives/L2/volumes/sepolia-op-node/
       o: bind
+  sepolia_op_dispute_mon_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /drives/L2/volumes/sepolia-op-dispute-mon/
+      o: bind
 # Use the shared network across all stacks
 networks:
   anton-net:
@@ -61,6 +67,25 @@ services:
       - anton-net
     depends_on:
       - sepolia-op-reth
+  sepolia-op-dispute-mon:
+    image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-dispute-mon
+    command: >
+      op-dispute-mon
+
+        --l1-eth-rpc http://sepolia-reth:8546
+        --game-factory-address 0x05F9613aDB30026FFd634f38e5C4dFd30a197Fa1
+        --rollup-rpc http://sepolia-op-node:9545
+        --metrics.enabled
+        --metrics.addr=0.0.0.0
+        --metrics.port=7303
+    ports:
+      - "7303:7303" # metrics
+    volumes:
+      - "sepolia_op_dispute_mon_data:/db"
+    networks:
+      - anton-net
+    depends_on:
+      - sepolia-op-node
   op-sepolia-eth-metrics-exporter:
     restart: unless-stopped
     image: ethpandaops/ethereum-metrics-exporter:debian-latest

@@ -1,5 +1,7 @@
 up:
 	mkdir /drives/L2/volumes/sepolia-op-node/ -p
+	mkdir /drives/L2/volumes/sepolia-op-reth/ -p
+	mkdir /drives/L2/volumes/sepolia-op-dispute-mon/ -p
 	mkdir /drives/L2/volumes/sepolia-op-node/jwttoken/ -p
 	cp ./jwttoken/jwt.hex /drives/L2/volumes/sepolia-op-node/jwttoken/
 	docker-compose up -d
