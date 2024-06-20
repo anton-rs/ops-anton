@@ -1,0 +1,46 @@
+networks:
+  anton-net:
+    external: true
+services:
+  op-sepolia-reth:
+    build:
+      context: .
+      dockerfile: ./op-sepolia-reth/op-reth.dockerfile
+    ports:
+      - "30309:30309/tcp" # eth/66 peering
+      - "8549:8549" # rpc
+      - "8559:8559" # engine
+      - "9422:9422" # metrics
+    volumes:
+      - "/drives/L2/op-sepolia/op-reth:/db"
+    networks:
+      - anton-net
+  op-sepolia-node:
+    build:
+      context: .
+      dockerfile: ./op-sepolia-node/op-node.dockerfile
+    ports:
+      - "7309:7309" # metrics
+      - "5059:5059" # rpc
+    volumes:
+      - "/drives/L2/op-sepolia/op-node:/db"
+      - "/drives/L2/op-sepolia/op-node:/safe-db"
+    networks:
+      - anton-net
+    depends_on:
+      - op-sepolia-reth
+  l2-sepolia-eth-metrics-exporter:
+    restart: unless-stopped
+    image: ethpandaops/ethereum-metrics-exporter:debian-latest
+    depends_on:
+      - op-sepolia-reth
+      - op-sepolia-node
+    ports:
+      - 9303:9303 # metrics
+    volumes:
+      - ./eth-metrics-exporter.yaml:/root/config.yaml
+    command:
+      - --config=/root/config.yaml
+      - --metrics-port=9303
+    networks:
+      - anton-net

@@ -1,0 +1,81 @@
+server:
+  port: 6969
+  assets-path: /home/ben/glance-assets
+theme:
+  background-color: 240 21 15
+  contrast-multiplier: 1.2
+  primary-color: 217 92 83
+  positive-color: 115 54 76
+  negative-color: 347 70 65
+pages:
+  - name: Home Lab
+    columns:
+      - size: small
+        widgets:
+          - type: calendar
+          - type: bookmarks
+            groups:
+              - links:
+                  - title: Gmail
+                    url: https://mail.google.com/mail/u/0/
+                  - title: Google Calendar
+                    url: https://calendar.google.com/calendar/u/1/
+                  - title: Github
+                    url: https://github.com/
+                  - title: Amazon
+                    url: https://www.amazon.com/
+                  - title: Wikipedia
+                    url: https://en.wikipedia.org/
+              - title: Entertainment
+                color: 10 70 50
+                links:
+                  - title: YouTube
+                    url: https://www.youtube.com/
+                  - title: Hackernews
+                    url: https://news.ycombinator.com/
+              - title: Social
+                color: 200 50 50
+                links:
+                  - title: Twitter
+                    url: https://twitter.com/
+                  - title: Warpcast
+                    url: https://warpcast.com/
+                  - title: Telegram
+                    url: https://web.telegram.org/
+      - size: full
+        widgets:
+          - type: repository
+            repository: ethereum-optimism/optimism
+            pull-requests-limit: 10
+            issues-limit: 5
+          - type: hacker-news
+          - type: reddit
+            subreddit: rust
+      - size: small
+        widgets:
+          - type: weather
+            location: Marietta, Georgia, United States
+            units: imperial
+          - type: releases
+            repositories:
+              - ethereum-optimism/kona
+              - ethereum-optimism/optimism
+              - paradigmxyz/reth
+          - type: stocks
+            stocks:
+              - symbol: SPY
+                name: S&P 500
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: ETH-USD
+                name: Ethereum
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AAPL
+                name: Apple
+              - symbol: MSFT
+                name: Microsoft
+              - symbol: GOOGL
+                name: Google
+              - symbol: AMD
+                name: AMD

@@ -17,6 +17,10 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["reth:9420"]
+  - job_name: op-node
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["op_node:7308"]
   - job_name: lighthouse
     scrape_interval: 5s
     static_configs:
@@ -29,6 +33,14 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["sepolia-lighthouse:5057"]
+  - job_name: op-sepolia-reth
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["op-sepolia-reth:9422"]
+  - job_name: op-sepolia-node
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["op-sepolia-node:7309"]
   - job_name: eth_metrics_exporter
     scrape_interval: 5s
     static_configs:
@@ -37,3 +49,15 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["sepolia-eth-metrics-exporter:9301"]
+  - job_name: eth_metrics_exporter_op_mainnet
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["l2-mainnet-eth-metrics-exporter:9302"]
+  - job_name: eth_metrics_exporter_op_sepolia
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["l2-sepolia-eth-metrics-exporter:9303"]
+  - job_name: op_dispute_mon
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["op-dispute-mon:7077"]

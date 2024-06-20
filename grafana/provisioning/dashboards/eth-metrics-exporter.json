@@ -3538,7 +3538,7 @@
           "refId": "StandardVariableQuery"
         },
         "refresh": 2,
-        "regex": "(.*9300|.*9301)$",
+        "regex": "(.*9300|.*9301|.*9302)$",
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
