@@ -1,8 +1,21 @@
+# Define volumes for the containers to persist data to
+volumes:
+  influxdb-store:
 # Use the shared network across all stacks
 networks:
   anton-net:
     external: true
 services:
+  op-influxdb:
+    image: influxdb:latest
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb-store:/var/lib/influxdb
+    environment:
+      - INFLUXDB_DB=geth
+      - INFLUXDB_ADMIN_USER=geth
+      - INFLUXDB_ADMIN_PASSWORD=geth
   opgeth:
     build:
       context: .
@@ -11,10 +24,13 @@ services:
       - "30306:30306/tcp" # eth/66 peering
       - "8547:8547" # rpc
       - "8553:8553" # engine
+      - "6060:6060" # metrics
     volumes:
       - "/drives/L2/op-mainnet/op-geth:/db"
     networks:
       - anton-net
+    depends_on:
+      - op-influxdb
   op_node:
     build:
       context: .

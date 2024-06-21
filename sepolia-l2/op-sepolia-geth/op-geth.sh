@@ -4,23 +4,23 @@ op-geth \
     --gcmode=archive \
     --state.scheme=hash \
     --http \
-    --http.port=8547 \
+    --http.port=8549 \
     --http.addr=0.0.0.0 \
     --http.api web3,eth,debug,admin,net,txpool \
     --http.vhosts='*' \
     --authrpc.addr=0.0.0.0 \
-    --authrpc.port=8553 \
+    --authrpc.port=8559 \
     --authrpc.jwtsecret=/jwt.hex \
     --authrpc.vhosts='*' \
     --verbosity=3 \
-    --port 30306 \
+    --port 30309 \
     --rollup.sequencerhttp=https://mainnet-sequencer.optimism.io/ \
-    --op-network=op-mainnet \
+    --op-network=op-sepolia \
     --datadir=/db \
     --syncmode snap \
-    --metrics \
     --metrics.influxdb \
     --metrics.addr "0.0.0.0" \
-    --metrics.influxdb.endpoint "http://op-influxdb:8086" \
+    --metrics.port 6069 \
+    --metrics.influxdb.endpoint "http://op-sepolia-influxdb:8087" \
     --metrics.influxdb.username "geth" \
     --metrics.influxdb.password "geth"

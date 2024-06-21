@@ -5,6 +5,7 @@
     --chain optimism-sepolia \
     --rollup.sequencer-http "https://sepolia-sequencer.optimism.io/" \
     --metrics 0.0.0.0:9422 \
+    --ws \
     --http \
     --http.port 8549 \
     --http.addr 0.0.0.0 \

@@ -21,6 +21,13 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["op_node:7308"]
+  - job_name: op-geth
+    scrape_interval: 5s
+    metrics_path: /debug/metrics/prometheus
+    static_configs:
+      - targets: ["opgeth:6060"]
+      - labels:
+          chain: op-mainnet
   - job_name: lighthouse
     scrape_interval: 5s
     static_configs:
@@ -33,10 +40,17 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["sepolia-lighthouse:5057"]
-  - job_name: op-sepolia-reth
+  # - job_name: op-sepolia-reth
+  #   scrape_interval: 5s
+  #   static_configs:
+  #     - targets: ["op-sepolia-reth:9422"]
+  - job_name: op-sepolia-geth
     scrape_interval: 5s
+    metrics_path: /debug/metrics/prometheus
     static_configs:
-      - targets: ["op-sepolia-reth:9422"]
+      - targets: ["op-sepolia-geth:6069"]
+      - labels:
+          chain: op-sepolia
   - job_name: op-sepolia-node
     scrape_interval: 5s
     static_configs:
