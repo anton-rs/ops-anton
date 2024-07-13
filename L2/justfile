@@ -1,0 +1,9 @@
+up:
+  #!/bin/bash
+  (cd ./op-mainnet && just up)
+  (cd ./op-sepolia && just up)
+
+down:
+  #!/bin/bash
+  (cd ./op-mainnet && just down)
+  (cd ./op-sepolia && just down)

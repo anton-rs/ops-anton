@@ -1,0 +1,13 @@
+consensus:
+  enabled: false
+  url: "http://op-node:5058/"
+  name: "consensus-client"
+execution:
+  enabled: true
+  url: "http://op-geth:8547/"
+  name: "execution-client"
+  modules:
+    - "eth"
+    - "net"
+    - "web3"
+    - "txpool"

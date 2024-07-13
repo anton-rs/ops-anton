@@ -5,6 +5,7 @@ rule_files:
 # - "first.rules"
 # - "second.rules"
 scrape_configs:
+  # system
   - job_name: prometheus
     scrape_interval: 5s
     static_configs:
@@ -13,25 +14,22 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["node-exporter:9100"]
+
+  # L1 mainnet
   - job_name: reth
     scrape_interval: 5s
     static_configs:
       - targets: ["reth:9420"]
-  - job_name: op-node
-    scrape_interval: 5s
-    static_configs:
-      - targets: ["op_node:7308"]
-  - job_name: op-geth
-    scrape_interval: 5s
-    metrics_path: /debug/metrics/prometheus
-    static_configs:
-      - targets: ["opgeth:6060"]
-      - labels:
-          chain: op-mainnet
   - job_name: lighthouse
     scrape_interval: 5s
     static_configs:
       - targets: ["lighthouse:5054"]
+  - job_name: eth_metrics_exporter
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["eth-metrics-exporter:9300"]
+
+  # L1 Sepolia
   - job_name: sepolia-reth
     scrape_interval: 5s
     static_configs:
@@ -40,38 +38,41 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["sepolia-lighthouse:5057"]
-  # - job_name: op-sepolia-reth
-  #   scrape_interval: 5s
-  #   static_configs:
-  #     - targets: ["op-sepolia-reth:9422"]
+  - job_name: eth_metrics_exporter_sepolia
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["sepolia-eth-metrics-exporter:9301"]
+
+  # L2 - OP Mainnet
+  - job_name: op-node
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["op-node:7308"]
+  - job_name: op-geth
+    scrape_interval: 5s
+    metrics_path: /debug/metrics/prometheus
+    static_configs:
+      - targets: ["op-geth:6060"]
+      - labels:
+          chain: op-mainnet
+  - job_name: eth_metrics_exporter_op_mainnet
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["l2-mainnet-eth-metrics-exporter:9302"]
+
+  # L2 - OP Sepolia
   - job_name: op-sepolia-geth
     scrape_interval: 5s
     metrics_path: /debug/metrics/prometheus
     static_configs:
-      - targets: ["op-sepolia-geth:6069"]
+      - targets: ["op-sepolia-geth:6061"]
       - labels:
           chain: op-sepolia
   - job_name: op-sepolia-node
     scrape_interval: 5s
     static_configs:
       - targets: ["op-sepolia-node:7309"]
-  - job_name: eth_metrics_exporter
-    scrape_interval: 5s
-    static_configs:
-      - targets: ["eth-metrics-exporter:9300"]
-  - job_name: eth_metrics_exporter_sepolia
-    scrape_interval: 5s
-    static_configs:
-      - targets: ["sepolia-eth-metrics-exporter:9301"]
-  - job_name: eth_metrics_exporter_op_mainnet
-    scrape_interval: 5s
-    static_configs:
-      - targets: ["l2-mainnet-eth-metrics-exporter:9302"]
   - job_name: eth_metrics_exporter_op_sepolia
     scrape_interval: 5s
     static_configs:
       - targets: ["l2-sepolia-eth-metrics-exporter:9303"]
-  - job_name: op_dispute_mon
-    scrape_interval: 5s
-    static_configs:
-      - targets: ["op-dispute-mon:7077"]

@@ -1,0 +1,46 @@
+# Use the shared network across all stacks
+networks:
+  anton-net:
+    external: true
+services:
+  op-geth:
+    build:
+      context: .
+      dockerfile: ./op-geth/op-geth.dockerfile
+    ports:
+      - "30306:30306/tcp" # eth/66 peering
+      - "8547:8547" # rpc
+      - "8553:8553" # engine
+      - "6060:6060" # metrics
+    volumes:
+      - "/drives/L2/op-mainnet/op-geth:/db"
+    networks:
+      - anton-net
+  op-node:
+    build:
+      context: .
+      dockerfile: ./op-node/op-node.dockerfile
+    ports:
+      - "7308:7308" # metrics
+      - "5058:5058" # rpc
+    volumes:
+      - "/drives/L2/op-mainnet/op-node:/db"
+    networks:
+      - anton-net
+    depends_on:
+      - op-geth
+  op-mainnet-eth-metrics-exporter:
+    restart: unless-stopped
+    image: ethpandaops/ethereum-metrics-exporter:debian-latest
+    depends_on:
+      - op-geth
+      - op-node
+    ports:
+      - 9302:9302 # metrics
+    volumes:
+      - ./eth-metrics-exporter.yaml:/root/config.yaml
+    command:
+      - --config=/root/config.yaml
+      - --metrics-port=9302
+    networks:
+      - anton-net

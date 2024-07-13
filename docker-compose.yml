@@ -3,12 +3,10 @@ volumes:
   portainer_data:
   prometheus_data:
   grafana_data:
-
 # Use the shared network across all stacks
 networks:
   anton-net:
     external: true
-
 services:
   portainer:
     image: portainer/portainer-ce:latest
@@ -47,10 +45,10 @@ services:
       - "/sys:/host/sys:ro"
       - "/:/rootfs:ro"
     command:
-      - '--path.procfs=/host/proc'
-      - '--path.rootfs=/rootfs'
-      - '--path.sysfs=/host/sys'
-      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+      - "--path.procfs=/host/proc"
+      - "--path.rootfs=/rootfs"
+      - "--path.sysfs=/host/sys"
+      - "--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)"
     ports:
       - "9100:9100"
     deploy:
