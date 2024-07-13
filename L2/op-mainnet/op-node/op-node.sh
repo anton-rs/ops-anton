@@ -5,7 +5,7 @@ op-node \
     --l1.rpckind=standard \
     --l1.beacon=http://lighthouse:5052 \
     --l1.trustrpc=true \
-    --l2=http://opgeth:8553 \
+    --l2=http://op-geth:8553 \
     --l2.jwt-secret=/jwt.hex \
     --network=op-mainnet \
     --syncmode=execution-layer \

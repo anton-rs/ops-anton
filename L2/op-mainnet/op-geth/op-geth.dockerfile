@@ -6,9 +6,9 @@ COPY --from=geth /usr/local/bin/geth /usr/local/bin/op-geth
 
 WORKDIR /
 
-COPY ./geth/opgeth.sh /
-RUN chmod +x /opgeth.sh
+COPY ./op-geth/op-geth.sh /
+RUN chmod +x /op-geth.sh
 COPY jwttoken/jwt.hex /
 
-ENTRYPOINT ["/opgeth.sh"]
+ENTRYPOINT ["/op-geth.sh"]
 CMD ["run"]

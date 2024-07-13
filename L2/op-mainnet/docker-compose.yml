@@ -3,10 +3,10 @@ networks:
   anton-net:
     external: true
 services:
-  opgeth:
+  op-geth:
     build:
       context: .
-      dockerfile: ./geth/op_geth.dockerfile
+      dockerfile: ./op-geth/op-geth.dockerfile
     ports:
       - "30306:30306/tcp" # eth/66 peering
       - "8547:8547" # rpc
@@ -16,10 +16,10 @@ services:
       - "/drives/L2/op-mainnet/op-geth:/db"
     networks:
       - anton-net
-  op_node:
+  op-node:
     build:
       context: .
-      dockerfile: ./op-node/op_node.dockerfile
+      dockerfile: ./op-node/op-node.dockerfile
     ports:
       - "7308:7308" # metrics
       - "5058:5058" # rpc
@@ -28,13 +28,13 @@ services:
     networks:
       - anton-net
     depends_on:
-      - opgeth
-  l2-mainnet-eth-metrics-exporter:
+      - op-geth
+  op-mainnet-eth-metrics-exporter:
     restart: unless-stopped
     image: ethpandaops/ethereum-metrics-exporter:debian-latest
     depends_on:
-      - opgeth
-      - op_node
+      - op-geth
+      - op-node
     ports:
       - 9302:9302 # metrics
     volumes:
