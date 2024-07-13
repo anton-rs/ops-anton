@@ -1,9 +1,9 @@
 up:
   #!/bin/bash
-  cd ./mainnet && just up
-  cd ./sepolia && just up
+  (cd ./mainnet && just up)
+  (cd ./sepolia && just up)
 
 down:
   #!/bin/bash
-  cd ./mainnet && just down
-  cd ./sepolia && just down
+  (cd ./mainnet && just down)
+  (cd ./sepolia && just down)

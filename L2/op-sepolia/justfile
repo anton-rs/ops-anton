@@ -2,5 +2,5 @@ up:
 	docker-compose up -d
 
 down:
-	docker-compose down
-	docker image ls 'op-sepolia-*' --format='{{.Repository}}' | xargs -r docker rmi
+	#!/bin/bash
+	docker-compose down && docker image ls "op-sepolia-*" --format="\{\{.Repository\}\}" | xargs -r docker rmi
