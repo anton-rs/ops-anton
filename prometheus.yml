@@ -75,3 +75,7 @@ scrape_configs:
     scrape_interval: 5s
     static_configs:
       - targets: ["op-dispute-mon:7077"]
+  - job_name: trusted-sync
+    scrape_interval: 5s
+    static_configs:
+      - targets: ["trusted-sync:9653"]

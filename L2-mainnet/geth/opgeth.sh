@@ -19,8 +19,4 @@ op-geth \
     --datadir=/db \
     --syncmode snap \
     --metrics \
-    --metrics.influxdb \
-    --metrics.addr "0.0.0.0" \
-    --metrics.influxdb.endpoint "http://op-influxdb:8086" \
-    --metrics.influxdb.username "geth" \
-    --metrics.influxdb.password "geth"
+    --metrics.addr "0.0.0.0"

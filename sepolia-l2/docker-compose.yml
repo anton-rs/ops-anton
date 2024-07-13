@@ -1,21 +1,21 @@
-volumes:
-  influxdb-sepolia-store:
+# volumes:
+#   influxdb-sepolia-store:
 networks:
   anton-net:
     external: true
 services:
-  op-sepolia-influxdb:
-    image: influxdb:latest
-    ports:
-      - "8087:8087"
-    volumes:
-      - influxdb-sepolia-store:/var/lib/influxdb
-    environment:
-      - INFLUXDB_DB=geth
-      - INFLUXDB_ADDR=0.0.0.0
-      - INFLUXDB_PORT=8087
-      - INFLUXDB_ADMIN_USER=geth
-      - INFLUXDB_ADMIN_PASSWORD=geth
+  # op-sepolia-influxdb:
+  #   image: influxdb:latest
+  #   ports:
+  #     - "8087:8087"
+  #   volumes:
+  #     - influxdb-sepolia-store:/var/lib/influxdb
+  #   environment:
+  #     - INFLUXDB_DB=geth
+  #     - INFLUXDB_ADDR=0.0.0.0
+  #     - INFLUXDB_PORT=8087
+  #     - INFLUXDB_ADMIN_USER=geth
+  #     - INFLUXDB_ADMIN_PASSWORD=geth
   # op-sepolia-reth:
   #   build:
   #     context: .
@@ -42,8 +42,6 @@ services:
       - "/drives/L2/op-sepolia/op-geth:/db"
     networks:
       - anton-net
-    depends_on:
-      - op-sepolia-influxdb
   op-sepolia-node:
     build:
       context: .

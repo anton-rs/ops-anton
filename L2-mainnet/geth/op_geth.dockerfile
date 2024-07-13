@@ -1,4 +1,4 @@
-FROM us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101315.1 AS geth
+FROM us-docker.pkg.dev/oplabs-tools-artifacts/images/op-geth:v1.101315.2 AS geth
 
 FROM ubuntu:latest
 

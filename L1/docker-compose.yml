@@ -2,22 +2,20 @@
 volumes:
   el_data:
   cl_data:
-
 # Use the shared network across all stacks
 networks:
   anton-net:
     external: true
-
 services:
   reth:
     build:
       context: .
       dockerfile: reth/reth.dockerfile
     ports:
-      - '9420:9420' # metrics
-      - '30303:30303' # eth/66 peering
-      - '8545:8545' # rpc
-      - '8551:8551' # engine
+      - "9420:9420" # metrics
+      - "30303:30303" # eth/66 peering
+      - "8545:8545" # rpc
+      - "8551:8551" # engine
     volumes:
       - "el_data:/db"
     networks:
@@ -27,9 +25,9 @@ services:
       context: .
       dockerfile: lighthouse/lighthouse.dockerfile
     ports:
-      - '5052:5052/tcp' # rpc
-      - '5053:5053/tcp'
-      - '5054:5054/tcp' # metrics
+      - "5052:5052/tcp" # rpc
+      - "5053:5053/tcp"
+      - "5054:5054/tcp" # metrics
     volumes:
       - "cl_data:/db"
     networks:

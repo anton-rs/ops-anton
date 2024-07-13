@@ -18,9 +18,5 @@ op-geth \
     --op-network=op-sepolia \
     --datadir=/db \
     --syncmode snap \
-    --metrics.influxdb \
     --metrics.addr "0.0.0.0" \
-    --metrics.port 6069 \
-    --metrics.influxdb.endpoint "http://op-sepolia-influxdb:8087" \
-    --metrics.influxdb.username "geth" \
-    --metrics.influxdb.password "geth"
+    --metrics.port 6069
