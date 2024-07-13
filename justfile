@@ -17,17 +17,21 @@ setup:
 up:
   #!/bin/bash
 
-  cd ./L1 && just up
-  cd ./L2 && just up
-
   export UID=$(id -u)
   export GID=$(id -g)
   UID=$UID GID=$GID docker-compose up -d
+  echo "Started system resources"
+
+  (cd ./L1 && just up)
+  echo "Started L1, waiting 15s before starting L2..."
+  sleep 15
+  (cd ./L2 && just up)
+  echo "Started L2"
 
 down:
   #!/bin/bash
-  cd ./L1 && just down && cd ..
-  cd ./L2 && just down && cd ..
+  (cd ./L1 && just down)
+  (cd ./L2 && just down)
 
   docker-compose down
   docker image ls "anton-*" --format="\{\{.Repository\}\}" | xargs -r docker rmi
