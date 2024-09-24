@@ -14,10 +14,10 @@ Then, create a shared network named `anton-net` for the containers to communicat
 docker network create anton-net
 ```
 
-To spin up the whole system, run `make sys_up`. This will build the images for the system utilities (Grafana, Prometheus, Portainer) as well as the L1
+To spin up the whole system, run `just up`. This will build the images for the system utilities (Grafana, Prometheus, Portainer) as well as the L1
 clients and start them in a container stack.
 
-To spin down the system, run `make sys_down`. This will stop the containers and purge their images.
+To spin down the system, run `just down`. This will stop the containers and purge their images.
 
 ## Ports
 
